@@ -1,32 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
+ <form id="ticketForm">
+        <div class="row g-3 mb-3">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calcolo Biglietto Treno - Milestone 1</title>
-</head>
+            <!-- Nome e Cognome -->
+            <div class="col-md-6">
+                <label for="fullName" class="form-label">Nome e Cognome</label>
+                <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Arya Stark" required>
+            </div>
 
-<body>
+            <!-- Chilometri -->
+            <div class="col-md-6">
+                <label for="distance" class="form-label">Km da percorrere</label>
+                <input type="number" id="distance" name="distance" class="form-control" placeholder="15" min="1"
+                    required>
+            </div>
 
-    <h1>Calcolo Prezzo Biglietto</h1>
+            <!-- Fascia d'età -->
+            <div class="col-md-12">
+                <label for="ageGroup" class="form-label">Fascia d'età</label>
+                <select id="ageGroup" name="ageGroup" class="form-select" required>
+                    <option value="" disabled selected>Seleziona età</option>
+                    <option value="minor">Minorenne</option>
+                    <option value="adult">Maggiorenne</option>
+                    <option value="senior">Over 65</option>
+                </select>
+            </div>
 
-    <form id="ticketForm">
-        <!-- Input 1: Chilometri -->
-        <label for="distance">Km da percorrere:</label>
-        <input type="number" id="distance" name="distance" required>
-        <br><br>
+        </div>
 
-        <!-- Input 2: Età -->
-        <label for="age">Età:</label>
-        <input type="number" id="age" name="age" required>
-        <br><br>
+        <!-- Pulsanti -->
+        <div class="d-flex justify-content-center gap-3 mb-5">
+            <button type="submit" class="btn btn-primary">Calcola</button>
+            <button type="reset" class="btn btn-secondary">Annulla</button>
+        </div>
 
-        <!-- Bottone -->
-        <button type="submit">Calcola Prezzo</button>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">NOME PASSEGGERO</th>
+                    <th scope="col">Offerta</th>
+                    <th scope="col">Carrozza</th>
+                    <th scope="col">Codice CP</th>
+                    <th scope="col">Costo biglietto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th id="NomePasseggero">1</th>
+                    <td id="Offerta"></td>
+                    <td id="Carozza"></td>
+                    <td id="codiceCP"></td>
+                    <td id="CostoBiglietto"></td>
+                </tr>
+            </tbody>
+        </table>
+
     </form>
-
+    </div>
+    </div>
     <script src="main.js"></script>
-</body>
-
-</html>

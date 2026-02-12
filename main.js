@@ -1,35 +1,38 @@
 // Prendo gli elementi dal DOM
+const fullNameEl = document.getElementById("fullName");
 const distanceEl = document.getElementById("distance");
-const ageEl = document.getElementById("age");
-const formEl = document.getElementById("ticketForm");
+const ageGroupEl = document.getElementById("ageGroup");
+
+//Richiamo del FORM
+const formEl = document.querySelector("form")
 
 // Gestione submit del form
-formEl.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    // Valori inseriti dall'utente
-    const km = Number(distanceEl.value);
-    const age = Number(ageEl.value);
-
-    // Prezzo per il treno: 0.21€ per km
-    const pricePerKm = 0.21;
-    let basePrice = km * pricePerKm;
-    let finalPrice = basePrice;
-
-    if (age < 18) {
-        // -20% se minorenne
-        finalPrice = basePrice * 0.8;
-        console.log("Sconto 20% applicato (minorenne)");
-    } else if (age >= 65) {
-        // -40% se over 65
-        finalPrice = basePrice * 0.6;
-        console.log("Sconto 40% applicato (over 65)");
+const nomePasseggeroEl = document.getElementById("NomePasseggero");
+const OffertaEl = document.getElementById("Offerta");
+const CarozzaEl = document.getElementById("Carozza");
+const codiceCP = document.getElementById("codiceCP");
+const CostoBigliettoEl = document.getElementById("CostoBiglietto");
+formEl.addEventListener("submit", function (e) {
+    e.preventDefault()
+    const nome = fullNameEl.value;
+    const km = distanceEl.value;
+    const eta = ageGroupEl.value;
+    nomePasseggeroEl.innerHTML = nome;
+    CarozzaEl.innerHTML = Math.floor(Math.random() * 10) + 1
+    codiceCP.innerHTML = Math.floor(Math.random() * 1000) + 10000
+    //calcolo per il prezzo del biglietto
+    let total_price = km * 0.21;
+    if (eta === "minor") {
+        total_price = total_price - (total_price * 20) / 100;
+        CostoBigliettoEl.innerHTML = total_price;
+        OffertaEl.innerHTML = "Sconto per i minorenni";
+    } else if (eta === "senior") {
+        total_price = total_price - (total_price * 40) / 100;
+        CostoBigliettoEl.innerHTML = total_price;
+        OffertaEl.innerHTML = "Sconto per gli anziani"
     } else {
-        console.log("Nessuno sconto");
+        CostoBigliettoEl.innerHTML = total_price;
+        OffertaEl.innerHTML = "no hai sconti disponibili"
     }
 
-    console.log("Distanza:", km, "km");
-    console.log("Età:", age);
-    console.log("Prezzo base:", basePrice.toFixed(2) + "€");
-    console.log("Prezzo finale:", finalPrice.toFixed(2) + "€");
-});
+})
